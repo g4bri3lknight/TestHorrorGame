@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: 91a7a59f9cb88ed43b779b2f582d6b5f
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bottom
+    100002: //RootNode
+    100004: fpArms_skinFemale
+    100006: fpArms_skinMale
+    100008: frArms_skinMale_LeftArm
+    100010: frArms_skinMale_LeftForeArm
+    100012: frArms_skinMale_LeftForeArmRoll
+    100014: frArms_skinMale_LeftHand
+    100016: frArms_skinMale_LeftHandIndex1
+    100018: frArms_skinMale_LeftHandIndex2
+    100020: frArms_skinMale_LeftHandIndex3
+    100022: frArms_skinMale_LeftHandMiddle1
+    100024: frArms_skinMale_LeftHandMiddle2
+    100026: frArms_skinMale_LeftHandMiddle3
+    100028: frArms_skinMale_LeftHandPinky1
+    100030: frArms_skinMale_LeftHandPinky2
+    100032: frArms_skinMale_LeftHandPinky3
+    100034: frArms_skinMale_LeftHandRing1
+    100036: frArms_skinMale_LeftHandRing2
+    100038: frArms_skinMale_LeftHandRing3
+    100040: frArms_skinMale_LeftHandThumb1
+    100042: frArms_skinMale_LeftHandThumb2
+    100044: frArms_skinMale_LeftHandThumb3
+    100046: frArms_skinMale_LeftHandWeapon
+    100048: frArms_skinMale_LeftInHandPinky
+    100050: frArms_skinMale_LeftShoulder
+    100052: frArms_skinMale_RightArm
+    100054: frArms_skinMale_RightForeArm
+    100056: frArms_skinMale_RightForeArmRoll
+    100058: frArms_skinMale_RightHand
+    100060: frArms_skinMale_RightHandIndex1
+    100062: frArms_skinMale_RightHandIndex2
+    100064: frArms_skinMale_RightHandIndex3
+    100066: frArms_skinMale_RightHandMiddle1
+    100068: frArms_skinMale_RightHandMiddle2
+    100070: frArms_skinMale_RightHandMiddle3
+    100072: frArms_skinMale_RightHandPinky1
+    100074: frArms_skinMale_RightHandPinky2
+    100076: frArms_skinMale_RightHandPinky3
+    100078: frArms_skinMale_RightHandRing1
+    100080: frArms_skinMale_RightHandRing2
+    100082: frArms_skinMale_RightHandRing3
+    100084: frArms_skinMale_RightHandThumb1
+    100086: frArms_skinMale_RightHandThumb2
+    100088: frArms_skinMale_RightHandThumb3
+    100090: frArms_skinMale_RightHandWeapon
+    100092: frArms_skinMale_RightInHandPinky
+    100094: frArms_skinMale_RightShoulder
+    100096: frArms_skinMale_Spine
+    100098: reference
+    400000: bottom
+    400002: //RootNode
+    400004: fpArms_skinFemale
+    400006: fpArms_skinMale
+    400008: frArms_skinMale_LeftArm
+    400010: frArms_skinMale_LeftForeArm
+    400012: frArms_skinMale_LeftForeArmRoll
+    400014: frArms_skinMale_LeftHand
+    400016: frArms_skinMale_LeftHandIndex1
+    400018: frArms_skinMale_LeftHandIndex2
+    400020: frArms_skinMale_LeftHandIndex3
+    400022: frArms_skinMale_LeftHandMiddle1
+    400024: frArms_skinMale_LeftHandMiddle2
+    400026: frArms_skinMale_LeftHandMiddle3
+    400028: frArms_skinMale_LeftHandPinky1
+    400030: frArms_skinMale_LeftHandPinky2
+    400032: frArms_skinMale_LeftHandPinky3
+    400034: frArms_skinMale_LeftHandRing1
+    400036: frArms_skinMale_LeftHandRing2
+    400038: frArms_skinMale_LeftHandRing3
+    400040: frArms_skinMale_LeftHandThumb1
+    400042: frArms_skinMale_LeftHandThumb2
+    400044: frArms_skinMale_LeftHandThumb3
+    400046: frArms_skinMale_LeftHandWeapon
+    400048: frArms_skinMale_LeftInHandPinky
+    400050: frArms_skinMale_LeftShoulder
+    400052: frArms_skinMale_RightArm
+    400054: frArms_skinMale_RightForeArm
+    400056: frArms_skinMale_RightForeArmRoll
+    400058: frArms_skinMale_RightHand
+    400060: frArms_skinMale_RightHandIndex1
+    400062: frArms_skinMale_RightHandIndex2
+    400064: frArms_skinMale_RightHandIndex3
+    400066: frArms_skinMale_RightHandMiddle1
+    400068: frArms_skinMale_RightHandMiddle2
+    400070: frArms_skinMale_RightHandMiddle3
+    400072: frArms_skinMale_RightHandPinky1
+    400074: frArms_skinMale_RightHandPinky2
+    400076: frArms_skinMale_RightHandPinky3
+    400078: frArms_skinMale_RightHandRing1
+    400080: frArms_skinMale_RightHandRing2
+    400082: frArms_skinMale_RightHandRing3
+    400084: frArms_skinMale_RightHandThumb1
+    400086: frArms_skinMale_RightHandThumb2
+    400088: frArms_skinMale_RightHandThumb3
+    400090: frArms_skinMale_RightHandWeapon
+    400092: frArms_skinMale_RightInHandPinky
+    400094: frArms_skinMale_RightShoulder
+    400096: frArms_skinMale_Spine
+    400098: reference
+    4300000: fpArms_skinMale
+    4300002: fpArms_skinFemale
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: fpArms_skinFemale
+    13700002: fpArms_skinMale
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

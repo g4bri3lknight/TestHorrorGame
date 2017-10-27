@@ -1,0 +1,192 @@
+fileFormatVersion: 2
+guid: f1eb82d8552b7cd49b8da009a6fd5df7
+timeCreated: 1496854143
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: gun
+    100004: l_armtwist_1
+    100006: l_armtwist_2
+    100008: l_armtwist_3
+    100010: l_armtwist_4
+    100012: l_forearm
+    100014: l_index_low
+    100016: l_index_mid
+    100018: l_index_tip
+    100020: l_middle_low
+    100022: l_middle_mid
+    100024: l_middle_tip
+    100026: l_pinky_low
+    100028: l_pinky_mid
+    100030: l_pinky_tip
+    100032: l_ring_low
+    100034: l_ring_mid
+    100036: l_ring_tip
+    100038: l_thumb_low
+    100040: l_thumb_mid
+    100042: l_thumb_mid_2
+    100044: l_thumb_tip
+    100046: l_upperarm
+    100048: l_wrist
+    100050: magazine
+    100052: muzzle
+    100054: r_armtwist_1
+    100056: r_armtwist_2
+    100058: r_armtwist_3
+    100060: r_armtwist_4
+    100062: r_forearm
+    100064: r_index_low
+    100066: r_index_mid
+    100068: r_index_tip
+    100070: r_middle_low
+    100072: r_middle_mid
+    100074: r_middle_tip
+    100076: r_pinky_low
+    100078: r_pinky_mid
+    100080: r_pinky_tip
+    100082: r_ring_low
+    100084: r_ring_mid
+    100086: r_ring_tip
+    100088: r_thumb_low
+    100090: r_thumb_mid
+    100092: r_thumb_tip
+    100094: r_upperarm
+    100096: r_wrist
+    100098: shell
+    100100: slide
+    100102: SMDImport
+    100104: SMDImport001
+    100106: trigger
+    400000: //RootNode
+    400002: gun
+    400004: l_armtwist_1
+    400006: l_armtwist_2
+    400008: l_armtwist_3
+    400010: l_armtwist_4
+    400012: l_forearm
+    400014: l_index_low
+    400016: l_index_mid
+    400018: l_index_tip
+    400020: l_middle_low
+    400022: l_middle_mid
+    400024: l_middle_tip
+    400026: l_pinky_low
+    400028: l_pinky_mid
+    400030: l_pinky_tip
+    400032: l_ring_low
+    400034: l_ring_mid
+    400036: l_ring_tip
+    400038: l_thumb_low
+    400040: l_thumb_mid
+    400042: l_thumb_mid_2
+    400044: l_thumb_tip
+    400046: l_upperarm
+    400048: l_wrist
+    400050: magazine
+    400052: muzzle
+    400054: r_armtwist_1
+    400056: r_armtwist_2
+    400058: r_armtwist_3
+    400060: r_armtwist_4
+    400062: r_forearm
+    400064: r_index_low
+    400066: r_index_mid
+    400068: r_index_tip
+    400070: r_middle_low
+    400072: r_middle_mid
+    400074: r_middle_tip
+    400076: r_pinky_low
+    400078: r_pinky_mid
+    400080: r_pinky_tip
+    400082: r_ring_low
+    400084: r_ring_mid
+    400086: r_ring_tip
+    400088: r_thumb_low
+    400090: r_thumb_mid
+    400092: r_thumb_tip
+    400094: r_upperarm
+    400096: r_wrist
+    400098: shell
+    400100: slide
+    400102: SMDImport
+    400104: SMDImport001
+    400106: trigger
+    4300000: SMDImport
+    4300002: SMDImport001
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: SMDImport
+    13700002: SMDImport001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

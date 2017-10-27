@@ -1,0 +1,380 @@
+fileFormatVersion: 2
+guid: 49c88df667ab86344a05bb57efe3b8b7
+timeCreated: 1469453801
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.002
+    100008: Bone.003
+    100010: Bone.004
+    100012: Bone.004_end
+    100014: Bone_end
+    100016: Camera
+    100018: frArms_skinMale_RightArm
+    100020: frArms_skinMale_RightArm.001
+    100022: frArms_skinMale_RightForeArm
+    100024: frArms_skinMale_RightForeArm.001
+    100026: frArms_skinMale_RightForeArm.001_end
+    100028: frArms_skinMale_RightForeArm_end
+    100030: frArms_skinMale_RightHand
+    100032: frArms_skinMale_RightHand.001
+    100034: frArms_skinMale_RightHandIndex1
+    100036: frArms_skinMale_RightHandIndex1.001
+    100038: frArms_skinMale_RightHandIndex2
+    100040: frArms_skinMale_RightHandIndex2.001
+    100042: frArms_skinMale_RightHandIndex3
+    100044: frArms_skinMale_RightHandIndex3.001
+    100046: frArms_skinMale_RightHandIndex3.001_end
+    100048: frArms_skinMale_RightHandIndex3_end
+    100050: frArms_skinMale_RightHandMiddle1
+    100052: frArms_skinMale_RightHandMiddle1.001
+    100054: frArms_skinMale_RightHandMiddle2
+    100056: frArms_skinMale_RightHandMiddle2.001
+    100058: frArms_skinMale_RightHandMiddle3
+    100060: frArms_skinMale_RightHandMiddle3.001
+    100062: frArms_skinMale_RightHandMiddle3.001_end
+    100064: frArms_skinMale_RightHandMiddle3_end
+    100066: frArms_skinMale_RightHandPinky1
+    100068: frArms_skinMale_RightHandPinky1.001
+    100070: frArms_skinMale_RightHandPinky2
+    100072: frArms_skinMale_RightHandPinky2.001
+    100074: frArms_skinMale_RightHandPinky3
+    100076: frArms_skinMale_RightHandPinky3.001
+    100078: frArms_skinMale_RightHandPinky3.001_end
+    100080: frArms_skinMale_RightHandPinky3_end
+    100082: frArms_skinMale_RightHandRing1
+    100084: frArms_skinMale_RightHandRing1.001
+    100086: frArms_skinMale_RightHandRing2
+    100088: frArms_skinMale_RightHandRing2.001
+    100090: frArms_skinMale_RightHandRing3
+    100092: frArms_skinMale_RightHandRing3.001
+    100094: frArms_skinMale_RightHandRing3.001_end
+    100096: frArms_skinMale_RightHandRing3_end
+    100098: frArms_skinMale_RightHandThumb1
+    100100: frArms_skinMale_RightHandThumb1.001
+    100102: frArms_skinMale_RightHandThumb2
+    100104: frArms_skinMale_RightHandThumb2.001
+    100106: frArms_skinMale_RightHandThumb3
+    100108: frArms_skinMale_RightHandThumb3.001
+    100110: frArms_skinMale_RightHandThumb3.001_end
+    100112: frArms_skinMale_RightHandThumb3_end
+    100114: frArms_skinMale_RightInHandPinky
+    100116: frArms_skinMale_RightInHandPinky.001
+    100118: frArms_skinMale_RightShoulder
+    100120: frArms_skinMale_RightShoulder.001
+    100122: frArms_skinMale_Spine
+    100124: frArms_skinMale_Spine.001
+    100126: Hemi
+    100128: instance_0.015
+    100130: Plane
+    100132: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.002
+    400008: Bone.003
+    400010: Bone.004
+    400012: Bone.004_end
+    400014: Bone_end
+    400016: Camera
+    400018: frArms_skinMale_RightArm
+    400020: frArms_skinMale_RightArm.001
+    400022: frArms_skinMale_RightForeArm
+    400024: frArms_skinMale_RightForeArm.001
+    400026: frArms_skinMale_RightForeArm.001_end
+    400028: frArms_skinMale_RightForeArm_end
+    400030: frArms_skinMale_RightHand
+    400032: frArms_skinMale_RightHand.001
+    400034: frArms_skinMale_RightHandIndex1
+    400036: frArms_skinMale_RightHandIndex1.001
+    400038: frArms_skinMale_RightHandIndex2
+    400040: frArms_skinMale_RightHandIndex2.001
+    400042: frArms_skinMale_RightHandIndex3
+    400044: frArms_skinMale_RightHandIndex3.001
+    400046: frArms_skinMale_RightHandIndex3.001_end
+    400048: frArms_skinMale_RightHandIndex3_end
+    400050: frArms_skinMale_RightHandMiddle1
+    400052: frArms_skinMale_RightHandMiddle1.001
+    400054: frArms_skinMale_RightHandMiddle2
+    400056: frArms_skinMale_RightHandMiddle2.001
+    400058: frArms_skinMale_RightHandMiddle3
+    400060: frArms_skinMale_RightHandMiddle3.001
+    400062: frArms_skinMale_RightHandMiddle3.001_end
+    400064: frArms_skinMale_RightHandMiddle3_end
+    400066: frArms_skinMale_RightHandPinky1
+    400068: frArms_skinMale_RightHandPinky1.001
+    400070: frArms_skinMale_RightHandPinky2
+    400072: frArms_skinMale_RightHandPinky2.001
+    400074: frArms_skinMale_RightHandPinky3
+    400076: frArms_skinMale_RightHandPinky3.001
+    400078: frArms_skinMale_RightHandPinky3.001_end
+    400080: frArms_skinMale_RightHandPinky3_end
+    400082: frArms_skinMale_RightHandRing1
+    400084: frArms_skinMale_RightHandRing1.001
+    400086: frArms_skinMale_RightHandRing2
+    400088: frArms_skinMale_RightHandRing2.001
+    400090: frArms_skinMale_RightHandRing3
+    400092: frArms_skinMale_RightHandRing3.001
+    400094: frArms_skinMale_RightHandRing3.001_end
+    400096: frArms_skinMale_RightHandRing3_end
+    400098: frArms_skinMale_RightHandThumb1
+    400100: frArms_skinMale_RightHandThumb1.001
+    400102: frArms_skinMale_RightHandThumb2
+    400104: frArms_skinMale_RightHandThumb2.001
+    400106: frArms_skinMale_RightHandThumb3
+    400108: frArms_skinMale_RightHandThumb3.001
+    400110: frArms_skinMale_RightHandThumb3.001_end
+    400112: frArms_skinMale_RightHandThumb3_end
+    400114: frArms_skinMale_RightInHandPinky
+    400116: frArms_skinMale_RightInHandPinky.001
+    400118: frArms_skinMale_RightShoulder
+    400120: frArms_skinMale_RightShoulder.001
+    400122: frArms_skinMale_Spine
+    400124: frArms_skinMale_Spine.001
+    400126: Hemi
+    400128: instance_0.015
+    400130: Plane
+    400132: //RootNode
+    4300000: instance_0.015
+    4300002: Plane
+    7400000: Run
+    7400002: Armature|instance_0.015Action
+    7400004: Armature|reference|Take 001|BaseLayer
+    7400006: instance_0.015|instance_0.015Action
+    7400008: instance_0.015|reference|Take 001|BaseLayer
+    7400010: Plane|instance_0.015Action
+    7400012: Plane|reference|Take 001|BaseLayer
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: instance_0.015
+    13700002: Plane
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_end
+        weight: 1
+      - path: Armature/Bone.001
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandIndex1
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandIndex1/frArms_skinMale_RightHandIndex2
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandIndex1/frArms_skinMale_RightHandIndex2/frArms_skinMale_RightHandIndex3
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandIndex1/frArms_skinMale_RightHandIndex2/frArms_skinMale_RightHandIndex3/frArms_skinMale_RightHandIndex3_end
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandMiddle1
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandMiddle1/frArms_skinMale_RightHandMiddle2
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandMiddle1/frArms_skinMale_RightHandMiddle2/frArms_skinMale_RightHandMiddle3
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandMiddle1/frArms_skinMale_RightHandMiddle2/frArms_skinMale_RightHandMiddle3/frArms_skinMale_RightHandMiddle3_end
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandRing1
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandRing1/frArms_skinMale_RightHandRing2
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandRing1/frArms_skinMale_RightHandRing2/frArms_skinMale_RightHandRing3
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandRing1/frArms_skinMale_RightHandRing2/frArms_skinMale_RightHandRing3/frArms_skinMale_RightHandRing3_end
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandThumb1
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandThumb1/frArms_skinMale_RightHandThumb2
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandThumb1/frArms_skinMale_RightHandThumb2/frArms_skinMale_RightHandThumb3
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightHandThumb1/frArms_skinMale_RightHandThumb2/frArms_skinMale_RightHandThumb3/frArms_skinMale_RightHandThumb3_end
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightInHandPinky
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightInHandPinky/frArms_skinMale_RightHandPinky1
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightInHandPinky/frArms_skinMale_RightHandPinky1/frArms_skinMale_RightHandPinky2
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightInHandPinky/frArms_skinMale_RightHandPinky1/frArms_skinMale_RightHandPinky2/frArms_skinMale_RightHandPinky3
+        weight: 1
+      - path: Armature/Bone.001/frArms_skinMale_RightHand/frArms_skinMale_RightInHandPinky/frArms_skinMale_RightHandPinky1/frArms_skinMale_RightHandPinky2/frArms_skinMale_RightHandPinky3/frArms_skinMale_RightHandPinky3_end
+        weight: 1
+      - path: Armature/Bone.002
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandIndex1.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandIndex1.001/frArms_skinMale_RightHandIndex2.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandIndex1.001/frArms_skinMale_RightHandIndex2.001/frArms_skinMale_RightHandIndex3.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandIndex1.001/frArms_skinMale_RightHandIndex2.001/frArms_skinMale_RightHandIndex3.001/frArms_skinMale_RightHandIndex3.001_end
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandMiddle1.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandMiddle1.001/frArms_skinMale_RightHandMiddle2.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandMiddle1.001/frArms_skinMale_RightHandMiddle2.001/frArms_skinMale_RightHandMiddle3.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandMiddle1.001/frArms_skinMale_RightHandMiddle2.001/frArms_skinMale_RightHandMiddle3.001/frArms_skinMale_RightHandMiddle3.001_end
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandRing1.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandRing1.001/frArms_skinMale_RightHandRing2.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandRing1.001/frArms_skinMale_RightHandRing2.001/frArms_skinMale_RightHandRing3.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandRing1.001/frArms_skinMale_RightHandRing2.001/frArms_skinMale_RightHandRing3.001/frArms_skinMale_RightHandRing3.001_end
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandThumb1.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandThumb1.001/frArms_skinMale_RightHandThumb2.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandThumb1.001/frArms_skinMale_RightHandThumb2.001/frArms_skinMale_RightHandThumb3.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightHandThumb1.001/frArms_skinMale_RightHandThumb2.001/frArms_skinMale_RightHandThumb3.001/frArms_skinMale_RightHandThumb3.001_end
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightInHandPinky.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightInHandPinky.001/frArms_skinMale_RightHandPinky1.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightInHandPinky.001/frArms_skinMale_RightHandPinky1.001/frArms_skinMale_RightHandPinky2.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightInHandPinky.001/frArms_skinMale_RightHandPinky1.001/frArms_skinMale_RightHandPinky2.001/frArms_skinMale_RightHandPinky3.001
+        weight: 1
+      - path: Armature/Bone.002/frArms_skinMale_RightHand.001/frArms_skinMale_RightInHandPinky.001/frArms_skinMale_RightHandPinky1.001/frArms_skinMale_RightHandPinky2.001/frArms_skinMale_RightHandPinky3.001/frArms_skinMale_RightHandPinky3.001_end
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.004_end
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine/frArms_skinMale_RightShoulder
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine/frArms_skinMale_RightShoulder/frArms_skinMale_RightArm
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine/frArms_skinMale_RightShoulder/frArms_skinMale_RightArm/frArms_skinMale_RightForeArm
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine/frArms_skinMale_RightShoulder/frArms_skinMale_RightArm/frArms_skinMale_RightForeArm/frArms_skinMale_RightForeArm_end
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine.001
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine.001/frArms_skinMale_RightShoulder.001
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine.001/frArms_skinMale_RightShoulder.001/frArms_skinMale_RightArm.001
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine.001/frArms_skinMale_RightShoulder.001/frArms_skinMale_RightArm.001/frArms_skinMale_RightForeArm.001
+        weight: 1
+      - path: Armature/frArms_skinMale_Spine.001/frArms_skinMale_RightShoulder.001/frArms_skinMale_RightArm.001/frArms_skinMale_RightForeArm.001/frArms_skinMale_RightForeArm.001_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: instance_0.015
+        weight: 1
+      - path: Plane
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
