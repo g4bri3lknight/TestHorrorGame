@@ -43,10 +43,61 @@ public class HDK_InventorySlot : MonoBehaviour
     public bool Empty;
     HDK_InventoryManager inventoryManager;
 
+    private Text textQuantity;
+
+    private int ammoInitialAmount;
+
+    void Update()
+    {
+        if (textQuantity != null)
+        {
+            if (itemType != ItemType.DigitalCamera || itemType != ItemType.Flashlight || itemType != ItemType.Key || itemType != ItemType.Melee || itemType != ItemType.Melee)
+            {
+                setTextQuantity(AmmosQuantity);
+            }    
+        }
+    }
+
+    void setTextQuantity(int qta)
+    {
+        if (!Empty)
+        {
+            if (itemType == ItemType.Firegun)
+            {
+                textQuantity.enabled = true;
+
+                if (qta > 6)
+                {
+                    textQuantity.color = Color.white;
+                }
+                else
+                {
+                    textQuantity.color = Color.red; 
+                }
+
+                textQuantity.text = qta.ToString();
+            }
+            else
+            {
+                if (qta > 1)
+                {
+                    textQuantity.text = qta.ToString();
+                    textQuantity.enabled = true;
+                    textQuantity.color = Color.white;
+                }
+            }
+        }
+        else
+        {
+            textQuantity.enabled = false;
+        }
+    }
 
     private void Start()
     {
         inventoryManager = GetComponentInParent<HDK_InventoryManager>();
+
+        textQuantity = this.gameObject.GetComponentInChildren<Text>();
     }
 
     public void UpdateSlot(string name, string info, Sprite icon, ItemType type, int ammos, float health, GameObject door, GameObject weapon)

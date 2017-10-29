@@ -84,7 +84,7 @@ public class HDK_InventoryManager : MonoBehaviour
                 GameObject weaponTarget = selSlot.GetComponent<HDK_InventorySlot>().WeaponTarget;
                 if (firegunSlot.GetComponent<HDK_InventorySlot>().Empty)
                 {
-                    firegunSlot.GetComponent<HDK_InventorySlot>().UpdateSlot(selSlot.itemName, selSlot.itemInfo, itemIcon, ItemType.Firegun, 0, 0, null, weaponTarget);
+                    firegunSlot.GetComponent<HDK_InventorySlot>().UpdateSlot(selSlot.itemName, selSlot.itemInfo, itemIcon, ItemType.Firegun, selSlot.AmmosQuantity, selSlot.HealthValue, null, weaponTarget);
                     selSlot.ResetSlot();
                     freeSlots += 1;
                     FindObjectOfType<HDK_WeaponsManager>().currentGun = weaponTarget;
@@ -386,8 +386,10 @@ public class HDK_InventoryManager : MonoBehaviour
                     string info = firegunSlot.GetComponent<HDK_InventorySlot>().itemInfo;
                     Sprite icon = firegunSlot.GetComponent<Image>().sprite;
                     ItemType type = firegunSlot.GetComponent<HDK_InventorySlot>().itemType;
+                    int ammo = firegunSlot.GetComponent<HDK_InventorySlot>().AmmosQuantity;
+                    float health = firegunSlot.GetComponent<HDK_InventorySlot>().HealthValue;
                     GameObject weapon = firegunSlot.GetComponent<HDK_InventorySlot>().WeaponTarget;
-                    AddItem(name, info, icon, type, 0, 0, null, weapon);
+                    AddItem(name, info, icon, type, ammo, health, null, weapon);
                     firegunSlot.GetComponent<HDK_InventorySlot>().ResetSlot();
                     FindObjectOfType<HDK_WeaponsManager>().gun_Putdown(false, true);
                 }
@@ -524,8 +526,8 @@ public class HDK_InventoryManager : MonoBehaviour
             if (selectedSlot.GetComponent<HDK_InventorySlot>().Empty)
             {
                 emptySlot = true;
-                InfoPanel.GetComponent<Animator>().SetBool("visible", false);
-                //InfoPanel.SetActive(false);
+                // InfoPanel.GetComponent<Animator>().SetBool("visible", false);
+                InfoPanel.SetActive(false);
             }
             else //++++++MODIFICA++++++
             {

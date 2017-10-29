@@ -267,20 +267,27 @@ public class ConsoleCommands:MonoBehaviour
 
     public HDK_InventorySlot getAmmosForFireGun()
     {
-        string nomeArma = slotFiregun.GetComponent<HDK_InventorySlot>().WeaponTarget.name;
-        List<HDK_InventorySlot> listaOggettiInventario = InventoryScrollContentGUI.GetComponentsInChildren<HDK_InventorySlot>().ToList();
-
-        foreach (HDK_InventorySlot slot in listaOggettiInventario)
+        try
         {
-            if (slot.WeaponTarget != null)
-            {
-                if (slot.itemType == ItemType.Ammo && slot.WeaponTarget.name == nomeArma)
-                {
-                    return slot;
-                }
-            } 
-        }
+            string nomeArma = slotFiregun.GetComponent<HDK_InventorySlot>().WeaponTarget.name;
+            List<HDK_InventorySlot> listaOggettiInventario = InventoryScrollContentGUI.GetComponentsInChildren<HDK_InventorySlot>().ToList();
 
+            foreach (HDK_InventorySlot slot in listaOggettiInventario)
+            {
+                if (slot.WeaponTarget != null)
+                {
+                    if (slot.itemType == ItemType.Ammo && slot.WeaponTarget.name == nomeArma)
+                    {
+                        return slot;
+                    }
+                } 
+            }
+        }
+        catch (NullReferenceException)
+        {
+            return null;
+        }
+            
         return null;
     }
 

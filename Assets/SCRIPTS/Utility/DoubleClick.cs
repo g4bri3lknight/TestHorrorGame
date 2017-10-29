@@ -17,6 +17,11 @@ public class DoubleClick : MonoBehaviour,IPointerClickHandler
         audioItem = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        
+    }
+
 
     public void OnPointerClick(PointerEventData eventData)
     {
