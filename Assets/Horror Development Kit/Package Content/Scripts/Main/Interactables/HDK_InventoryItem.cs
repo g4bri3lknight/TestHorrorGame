@@ -1,8 +1,8 @@
 ﻿//Script written by Giovanni Cartella - giovanni.cartella@hotmail.com || www.giovannicartella.weebly.com
 //You are allowed to use this only if you have "Horror Development Kit" license, so only if you bought it officially
 
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class HDK_InventoryItem : MonoBehaviour {
 
@@ -15,6 +15,7 @@ public class HDK_InventoryItem : MonoBehaviour {
 
     [Header("Examination Settings")]
     public float Distance;
+    public float MovementTime;
     Vector3 startPos;
     Quaternion startRot;
     Vector3 endPos;
@@ -32,6 +33,7 @@ public class HDK_InventoryItem : MonoBehaviour {
     public GameObject TargetObject;
 
     GameObject player;
+
 
     public void AddItem()
     {
@@ -55,12 +57,38 @@ public class HDK_InventoryItem : MonoBehaviour {
 
     public void Examine()
     {
-        transform.position = Vector3.Lerp(startPos, endPos, 1);
+        //Move the item near the camera
+        StartCoroutine(MoveToPosition(transform, endPos, MovementTime));
     }
 
     public void RestorePos()
     {
-        transform.position = Vector3.Lerp(endPos, startPos, 1);
-        transform.rotation = startRot;
+        //Restore the item world position
+        StartCoroutine(MoveToPosition(transform, startPos, MovementTime));
+        StartCoroutine(MoveToRotation(transform, startRot, MovementTime));
+    }
+
+    public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)
+    {
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, position, t);
+            yield return null;
+        }
+    }
+
+    public IEnumerator MoveToRotation(Transform transform, Quaternion rotation, float timeToMove)
+    {
+        var currentRot = transform.rotation;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.rotation = Quaternion.Lerp(currentRot, rotation, t);
+            yield return null;
+        }
     }
 }
