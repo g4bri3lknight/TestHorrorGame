@@ -6,6 +6,7 @@ using System.Data;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 
 public class DataBaseManager:MonoBehaviour
@@ -44,26 +45,90 @@ public class DataBaseManager:MonoBehaviour
 
     public void DeleteAllItems()
     {
-        string sqlQuery = "DELETE FROM INVENTORY;";
-
+        string sqlQueryInventory = "DELETE FROM INVENTORY;";
         try
         {
             DBConnect();
             Debug.Log("DeleteAllItems start");
             IDbCommand dbcmd = dbconn.CreateCommand();
             dbcmd.CommandType = CommandType.Text;
-            dbcmd.CommandText = sqlQuery;
+
+            dbcmd.CommandText = sqlQueryInventory;
+
             int deletedRow = dbcmd.ExecuteNonQuery();
             Debug.Log("Record rimossi: " + string.Format("{0}", deletedRow));
+
             Debug.Log("DeleteAllItems end");
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
             DBDisconnect();
         }
         catch (Exception ex)
         {
-            Debug.Log(string.Format("Errore nell'esecuzione della query {0}\n - Eccezzione: {1}", sqlQuery, ex)); 
+            Debug.Log(string.Format("Errore nell'esecuzione della query {0}\n - Eccezzione: {1}", sqlQueryInventory, ex)); 
             DBDisconnect();
         }
        
+    }
+
+    public void DeleteAllPlayerInfo()
+    {
+        string sqlQueryPlayerInfo = "DELETE FROM PLAYER_INFO;";
+        try
+        {
+            DBConnect();
+            Debug.Log("DeleteAllPlayerInfo start");
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            dbcmd.CommandText = sqlQueryPlayerInfo;
+
+            int deletedRow = dbcmd.ExecuteNonQuery();
+            Debug.Log("Record rimossi: " + string.Format("{0}", deletedRow));
+            Debug.Log("DeleteAllPlayerInfo end");
+
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(string.Format("Errore nell'esecuzione della query {0}\n - Eccezzione: {1}", sqlQueryPlayerInfo, ex)); 
+            DBDisconnect();
+        }
+    }
+
+    public void DeleteAllSceneInfo()
+    {
+        string sqlQuerySceneInfo = "DELETE FROM SCENE_INFO;";
+        try
+        {
+            DBConnect();
+            Debug.Log("DeleteAllSceneInfo start");
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            dbcmd.CommandText = sqlQuerySceneInfo;
+
+            int deletedRow = dbcmd.ExecuteNonQuery();
+            Debug.Log("Record rimossi: " + string.Format("{0}", deletedRow));
+            Debug.Log("DeleteAllSceneInfo end");
+
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(string.Format("Errore nell'esecuzione della query {0}\n - Eccezzione: {1}", sqlQuerySceneInfo, ex)); 
+            DBDisconnect();
+        }
     }
 
  
@@ -205,7 +270,207 @@ public class DataBaseManager:MonoBehaviour
     }
 
 
-    #endregion
+    public void SavePlayerInfo(PlayerInfoDB info)
+    {
+        try
+        {
+            //Per comodita'cancello tutte le info del player
+            DeleteAllPlayerInfo();
 
+            DBConnect();
+
+            Debug.Log("SavePlayerInfo start");
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}'", 
+                                info.PositionInScene.x, info.PositionInScene.y, info.PositionInScene.z, 
+                                info.RotationInScene.x, info.RotationInScene.y, info.RotationInScene.z, info.RotationInScene.w, info.CurrentHealth, info.TotalHealth);
+
+
+            string sqlQuery = string.Format("INSERT INTO PLAYER_INFO ('POSITION_X','POSITION_Y','POSITION_Z','ROTATION_X','ROTATION_Y','ROTATION_Z','ROTATION_W','HEALTH_VALUE','HEALTH_TOTAL')" +
+                                  " VALUES ({0});", values);
+
+
+            dbcmd.CommandText = sqlQuery;
+
+            int insertedRow = dbcmd.ExecuteNonQuery();
+
+            if (insertedRow == 0)
+            {
+                Debug.Log("Errore nell'esecuzione della query!"); 
+            }
+            else
+            {
+                Debug.Log("Query eseguita!"); 
+            }
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("SavePlayerInfo end");
+            DBDisconnect(); 
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+    }
+
+
+    public PlayerInfoDB LoadPlayerInfo()
+    {
+
+        PlayerInfoDB info = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
+
+        try
+        {
+            DBConnect();
+
+            Debug.Log("LoadPlayerInfo start");
+
+            IDataReader reader = null;
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            string sqlQuery = "SELECT * FROM PLAYER_INFO";
+
+            dbcmd.CommandText = sqlQuery;
+
+            reader = dbcmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Vector3 pos = new Vector3(reader.GetFloat(0), reader.GetFloat(1), reader.GetFloat(2));
+
+                info.PositionInScene = pos;
+
+                Quaternion rotation = new Quaternion(reader.GetFloat(3), reader.GetFloat(4), reader.GetFloat(5), reader.GetFloat(6));
+
+                info.RotationInScene = rotation;
+
+                info.CurrentHealth = reader.GetFloat(7);
+                info.TotalHealth = reader.GetFloat(8);          
+            }
+
+            reader.Close();
+            reader = null;
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("LoadPlayerInfo end");
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+            
+        return info;
+    }
+
+    public void SaveScene(List<string> listOfObjectToDestroy)
+    {
+        try
+        {
+            DeleteAllSceneInfo();
+
+            DBConnect();
+
+            Debug.Log("SaveScene start");
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            foreach (string itemName in listOfObjectToDestroy)
+            {
+                string values = string.Format("'{0}'", itemName);
+
+
+                string sqlQuery = string.Format("INSERT INTO OBJECTS_TO_DESTROY ('NAME')" +
+                                      " VALUES ({0});", values);
+
+
+                dbcmd.CommandText = sqlQuery;
+
+                int insertedRow = dbcmd.ExecuteNonQuery();
+
+                if (insertedRow == 0)
+                {
+                    Debug.Log("Errore nell'esecuzione della query!"); 
+                }
+                else
+                {
+                    Debug.Log("Query eseguita!"); 
+                }
+            }
+
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("SaveScene end");
+            DBDisconnect(); 
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+    }
+
+    public List<string> LoadScene()
+    {
+        List<string> listOfObjectToDestroy = new List<string>();
+
+        try
+        {
+            DBConnect();
+
+            Debug.Log("LoadScene start");
+
+            IDataReader reader = null;
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            string sqlQuery = "SELECT * FROM OBJECTS_TO_DESTROY";
+
+            dbcmd.CommandText = sqlQuery;
+
+            reader = dbcmd.ExecuteReader();
+
+            string sceneName = "";
+            int sceneIndex = 0;
+
+            while (reader.Read())
+            {
+                sceneName = reader.GetString(0);
+                listOfObjectToDestroy.Add(sceneName);
+            }
+                
+            reader.Close();
+            reader = null;
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("LoadScene end");
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+
+        return listOfObjectToDestroy;
+    }
+
+
+    #endregion
 
 }

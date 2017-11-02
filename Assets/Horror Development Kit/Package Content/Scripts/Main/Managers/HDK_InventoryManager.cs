@@ -536,28 +536,36 @@ public class HDK_InventoryManager : MonoBehaviour
                     InfoPanel.SetActive(true);
                     InfoPanel.GetComponent<Animator>().SetBool("visible", true);
 
-                    if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Firegun ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Melee ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Key)
-                    {
-                        buttonEquip.SetActive(true);
-                        buttonUse.SetActive(false);
-                    }
-
-                    if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Eatable ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.FlashlightBatteries ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Medikit ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.DigitalCamera ||
-                        selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Flashlight)
+                    if (selectedSlot.name == "slotKey")
                     {
                         buttonEquip.SetActive(false);
                         buttonUse.SetActive(true);
                     }
-
-                    if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Ammo)
+                    else
                     {
-                        buttonEquip.SetActive(false);
-                        buttonUse.SetActive(false);
+                        if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Firegun ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Melee ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Key)
+                        {
+                            buttonEquip.SetActive(true);
+                            buttonUse.SetActive(false);
+                        }
+
+                        if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Eatable ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.FlashlightBatteries ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Medikit ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.DigitalCamera ||
+                            selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Flashlight)
+                        {
+                            buttonEquip.SetActive(false);
+                            buttonUse.SetActive(true);
+                        }
+
+                        if (selectedSlot.GetComponent<HDK_InventorySlot>().itemType == ItemType.Ammo)
+                        {
+                            buttonEquip.SetActive(false);
+                            buttonUse.SetActive(false);
+                        }
                     }
                 }
             }

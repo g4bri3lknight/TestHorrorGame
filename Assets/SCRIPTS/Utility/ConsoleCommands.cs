@@ -16,6 +16,10 @@ public class ConsoleCommands:MonoBehaviour
     public GameObject slotFiregun;
     public GameObject slotKey;
 
+
+    private HDK_PlayerHealth playerhealth;
+    private Transform playerTransform;
+
     [Header("Object References")]
     [Tooltip("Lista di oggetti padre in cu effettuare le ricerche. Se vuota verra' effettuata la ricerca solo al livello globale.")]
     public List<GameObject> listOfGameObjects;
@@ -23,6 +27,8 @@ public class ConsoleCommands:MonoBehaviour
     private string[] commandLine;
 
     private Command command;
+
+    private List<String> listOfObjectsToDestroy;
 
     public string[] CommandLine
     {
@@ -58,6 +64,8 @@ public class ConsoleCommands:MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         dbmanager = GetComponent<DataBaseManager>();
+
+        listOfObjectsToDestroy = new List<string>();
     }
 
 
@@ -110,6 +118,21 @@ public class ConsoleCommands:MonoBehaviour
             AddText(command.UsageHelp, "white");
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+
+    public void Save()
+    {
+        SaveInventory();
+        SavePlayerInfo();
+        SaveScene();
+    }
+
+    public void Load()
+    {
+        LoadInventory();
+        LoadPlayerInfo();
+        LoadScene();
     }
 
 
@@ -338,5 +361,65 @@ public class ConsoleCommands:MonoBehaviour
         }
 
         return null;
+    }
+
+
+    public void SavePlayerInfo()
+    {
+        playerhealth = Player.GetComponent<HDK_PlayerHealth>();
+
+        playerTransform = Player.transform;
+
+        PlayerInfoDB playerInfo = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
+
+        playerInfo.PositionInScene = playerTransform.position;
+
+        playerInfo.RotationInScene = playerTransform.rotation;
+
+        playerInfo.TotalHealth = playerhealth.Health;
+
+        playerInfo.CurrentHealth = playerhealth.maxHealth;
+
+        dbmanager.SavePlayerInfo(playerInfo);
+    }
+
+    public void LoadPlayerInfo()
+    {
+        PlayerInfoDB info = dbmanager.LoadPlayerInfo();
+
+        Player.GetComponent<HDK_PlayerHealth>().Health = info.CurrentHealth;
+
+        Player.GetComponent<HDK_PlayerHealth>().maxHealth = info.TotalHealth;
+
+        Player.transform.position = info.PositionInScene;
+
+        Player.transform.rotation = info.RotationInScene;
+    }
+
+
+    public void SaveScene()
+    {
+        dbmanager.SaveScene(listOfObjectsToDestroy);
+    }
+
+    public void LoadScene()
+    {
+        listOfObjectsToDestroy = dbmanager.LoadScene();
+
+        foreach (string itemName in listOfObjectsToDestroy)
+        {
+            GameObject obj = FindGameObject(itemName);
+
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+    }
+
+
+    public void AddObjectToDestroy(String args)
+    {
+        listOfObjectsToDestroy.Add(args);
     }
 }

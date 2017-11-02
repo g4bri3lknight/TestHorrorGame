@@ -51,7 +51,7 @@ public class HDK_InventorySlot : MonoBehaviour
     {
         if (textQuantity != null)
         {
-            if (itemType != ItemType.DigitalCamera || itemType != ItemType.Flashlight || itemType != ItemType.Key || itemType != ItemType.Melee || itemType != ItemType.Melee)
+            if (itemType != ItemType.NONE || itemType != ItemType.DigitalCamera || itemType != ItemType.Flashlight || itemType != ItemType.Key || itemType != ItemType.Melee || itemType != ItemType.Melee)
             {
                 setTextQuantity(AmmosQuantity);
             }    

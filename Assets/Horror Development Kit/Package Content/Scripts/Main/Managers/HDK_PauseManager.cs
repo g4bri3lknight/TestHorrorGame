@@ -377,13 +377,13 @@ public class HDK_PauseManager : MonoBehaviour
 
     public void SaveGame()
     {
-        consoleCommands.SaveInventory();
+        consoleCommands.Save();
         StartCoroutine(ShowText("Salvataggio effettuato"));
     }
 
     public void LoadGame()
     {
-        consoleCommands.LoadInventory();
+        consoleCommands.Load();
         StartCoroutine(ShowText("Caricamento effettuato"));
     }
 
