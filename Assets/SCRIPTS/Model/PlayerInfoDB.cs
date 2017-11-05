@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInfoDB : ScriptableObject
 {
+    private string currentScene;
+
     private Vector3 positionInScene;
 
     private Quaternion rotationInScene;
@@ -11,6 +13,26 @@ public class PlayerInfoDB : ScriptableObject
     private float currentHealth;
 
     private float totalHealth;
+
+    private bool hasFlashLight;
+
+    private float flashLightHealth;
+
+    private float flashLightTotalHealth;
+
+
+
+    public string CurrentScene
+    {
+        get
+        {
+            return this.currentScene;
+        }
+        set
+        {
+            currentScene = value;
+        }
+    }
 
     public Vector3 PositionInScene
     {
@@ -57,6 +79,42 @@ public class PlayerInfoDB : ScriptableObject
         set
         {
             totalHealth = value;
+        }
+    }
+
+    public bool HasFlashLight
+    {
+        get
+        {
+            return this.hasFlashLight;
+        }
+        set
+        {
+            hasFlashLight = value;
+        }
+    }
+
+    public float FlashLightHealth
+    {
+        get
+        {
+            return this.flashLightHealth;
+        }
+        set
+        {
+            flashLightHealth = value;
+        }
+    }
+
+    public float FlashLightTotalHealth
+    {
+        get
+        {
+            return this.flashLightTotalHealth;
+        }
+        set
+        {
+            flashLightTotalHealth = value;
         }
     }
 }

@@ -104,7 +104,7 @@ public class DataBaseManager:MonoBehaviour
 
     public void DeleteAllSceneInfo()
     {
-        string sqlQuerySceneInfo = "DELETE FROM SCENE_INFO;";
+        string sqlQuerySceneInfo = "DELETE FROM OBJECTS_TO_DESTROY;";
         try
         {
             DBConnect();
@@ -284,12 +284,17 @@ public class DataBaseManager:MonoBehaviour
             IDbCommand dbcmd = dbconn.CreateCommand();
             dbcmd.CommandType = CommandType.Text;
 
-            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}'", 
+            int hasFlashlight = (info.HasFlashLight ? 1 : 0);
+
+            string values = string.Format("'{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}'", 
                                 info.PositionInScene.x, info.PositionInScene.y, info.PositionInScene.z, 
-                                info.RotationInScene.x, info.RotationInScene.y, info.RotationInScene.z, info.RotationInScene.w, info.CurrentHealth, info.TotalHealth);
+                                info.RotationInScene.x, info.RotationInScene.y, info.RotationInScene.z, 
+                                info.RotationInScene.w, info.CurrentHealth, info.TotalHealth, 
+                                hasFlashlight, info.FlashLightHealth, info.FlashLightTotalHealth, info.CurrentScene);
 
 
-            string sqlQuery = string.Format("INSERT INTO PLAYER_INFO ('POSITION_X','POSITION_Y','POSITION_Z','ROTATION_X','ROTATION_Y','ROTATION_Z','ROTATION_W','HEALTH_VALUE','HEALTH_TOTAL')" +
+            string sqlQuery = string.Format("INSERT INTO PLAYER_INFO ('POSITION_X','POSITION_Y','POSITION_Z','ROTATION_X','ROTATION_Y','ROTATION_Z'," +
+                                  "'ROTATION_W','HEALTH_VALUE','HEALTH_TOTAL','HAS_FLASHLIGHT','FLASHLIGHT_HEALTH_VALUE','FLASHLIGHT_HEALTH_TOTAL','CURRENT_SCENE')" +
                                   " VALUES ({0});", values);
 
 
@@ -353,7 +358,13 @@ public class DataBaseManager:MonoBehaviour
                 info.RotationInScene = rotation;
 
                 info.CurrentHealth = reader.GetFloat(7);
-                info.TotalHealth = reader.GetFloat(8);          
+                info.TotalHealth = reader.GetFloat(8);  
+
+                info.HasFlashLight = (reader.GetFloat(9) == 1 ? true : false);
+                info.FlashLightHealth = reader.GetFloat(10);
+                info.FlashLightTotalHealth = reader.GetFloat(11);
+
+                info.CurrentScene = reader.GetString(12);
             }
 
             reader.Close();
@@ -445,7 +456,6 @@ public class DataBaseManager:MonoBehaviour
             reader = dbcmd.ExecuteReader();
 
             string sceneName = "";
-            int sceneIndex = 0;
 
             while (reader.Read())
             {

@@ -5,6 +5,8 @@ using System;
 using UnityEditor;
 using UnityEngine.UI;
 using System.Linq;
+using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 
 public class ConsoleCommands:MonoBehaviour
@@ -16,9 +18,10 @@ public class ConsoleCommands:MonoBehaviour
     public GameObject slotFiregun;
     public GameObject slotKey;
 
-
     private HDK_PlayerHealth playerhealth;
     private Transform playerTransform;
+
+    private HDK_Flashlight flashLight;
 
     [Header("Object References")]
     [Tooltip("Lista di oggetti padre in cu effettuare le ricerche. Se vuota verra' effettuata la ricerca solo al livello globale.")]
@@ -130,8 +133,8 @@ public class ConsoleCommands:MonoBehaviour
 
     public void Load()
     {
-        LoadInventory();
         LoadPlayerInfo();
+        LoadInventory();
         LoadScene();
     }
 
@@ -328,8 +331,6 @@ public class ConsoleCommands:MonoBehaviour
         return counTotalAmmo;
     }
 
-
-
     public void setAmmosQuantityForFireGun(int newValue)
     {
         HDK_InventorySlot slot = getAmmosForFireGun();
@@ -370,15 +371,20 @@ public class ConsoleCommands:MonoBehaviour
 
         playerTransform = Player.transform;
 
+        flashLight = Player.GetComponent<HDK_Flashlight>();
+
         PlayerInfoDB playerInfo = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
 
         playerInfo.PositionInScene = playerTransform.position;
-
         playerInfo.RotationInScene = playerTransform.rotation;
-
         playerInfo.TotalHealth = playerhealth.Health;
-
         playerInfo.CurrentHealth = playerhealth.maxHealth;
+
+        playerInfo.HasFlashLight = flashLight.hasFlashlight;
+        playerInfo.FlashLightHealth = flashLight.health;
+        playerInfo.FlashLightTotalHealth = flashLight.MaxHealth;
+
+        playerInfo.CurrentScene = SceneManager.GetActiveScene().name;
 
         dbmanager.SavePlayerInfo(playerInfo);
     }
@@ -387,13 +393,18 @@ public class ConsoleCommands:MonoBehaviour
     {
         PlayerInfoDB info = dbmanager.LoadPlayerInfo();
 
-        Player.GetComponent<HDK_PlayerHealth>().Health = info.CurrentHealth;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(info.CurrentScene));
 
+        Player.GetComponent<HDK_PlayerHealth>().Health = info.CurrentHealth;
         Player.GetComponent<HDK_PlayerHealth>().maxHealth = info.TotalHealth;
 
         Player.transform.position = info.PositionInScene;
 
         Player.transform.rotation = info.RotationInScene;
+
+        Player.GetComponent<HDK_Flashlight>().hasFlashlight = info.HasFlashLight;
+        Player.GetComponent<HDK_Flashlight>().health = info.FlashLightHealth;
+        Player.GetComponent<HDK_Flashlight>().MaxHealth = info.FlashLightTotalHealth;
     }
 
 
