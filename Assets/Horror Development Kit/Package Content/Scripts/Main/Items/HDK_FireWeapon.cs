@@ -961,20 +961,19 @@ public class HDK_FireWeapon : MonoBehaviour
                 //weaponAnim.CrossFade(reloadAnim);
                 aSource.PlayOneShot(soundReload);
                 yield return new WaitForSeconds(reloadTime);
-
-                int temp = bulletsLeft;
-                bulletsLeft = bulletsLeft + (bulletsPerMag - bulletsLeft);
-
-                if (magazines >= bulletsPerMag)
+  
+                if (magazines + bulletsLeft >= bulletsPerMag)
                 {
-                    magazines = (magazines - bulletsPerMag) + temp;
+                    magazines -= (bulletsPerMag - bulletsLeft);
+                    bulletsLeft += (bulletsPerMag - bulletsLeft);
                 }
                 else
                 {
-                    magazines = magazines - (bulletsPerMag - temp);          
+                    bulletsLeft += magazines;  
+                    magazines = 0;
                 }
 
-                //settare l'oggetto munizioni per l'arma in uso con la nuova quantita' - se quantita'= 0 resetta lo slot inventario
+                //setta l'oggetto munizioni per l'arma in uso con la nuova quantita' - se quantita'= 0 resetta lo slot inventario
                 consoleCommands.setAmmosQuantityForFireGun(magazines);
             }
            
