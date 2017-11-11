@@ -15,6 +15,9 @@ public class BreakableObject : MonoBehaviour
     [Space(5)]
     [Tooltip("NON VALORIZZARE!Mostra l'oggetto selezionato tramite random!(Per usi futuri...)")]
     public GameObject itemObjectInside;
+    [Space(5)]
+    [Tooltip("Se TRUE il random includera' la possibilita'che la scatola non dia nessun oggetto")]
+    public bool canBeEmpty;
     [Space(10)]
     /*
     [Tooltip("Audio da riprodurre quando l'oggetto viene distrutto")]
@@ -30,8 +33,26 @@ public class BreakableObject : MonoBehaviour
 
     void Start()
     {
-        int rand = Random.Range(0, ListOfItemObjectInside.Count);
-        itemObjectInside = ListOfItemObjectInside[rand];
+        int rand;
+        if (canBeEmpty)
+        {
+            rand = Random.Range(-1, ListOfItemObjectInside.Count);
+        }
+        else
+        {
+            rand = Random.Range(0, ListOfItemObjectInside.Count);
+        }
+
+        //-1 viene usato per non generare nessun oggetto all'interno della scatola
+        if (rand == -1)
+        {
+            itemObjectInside = null;
+        }
+        else
+        {
+            itemObjectInside = ListOfItemObjectInside[rand];
+        }
+
     }
 
     public void  OnMouseOver()
@@ -54,7 +75,10 @@ public class BreakableObject : MonoBehaviour
 
         if (ListOfItemObjectInside != null && ListOfItemObjectInside.Count > 0)
         {
-            GameObject clone = Instantiate(itemObjectInside, transform.position, transform.rotation);
+            if (itemObjectInside != null)
+            {
+                GameObject clone = Instantiate(itemObjectInside, transform.position, transform.rotation);
+            }
         }
         
         if (destroyedObject)

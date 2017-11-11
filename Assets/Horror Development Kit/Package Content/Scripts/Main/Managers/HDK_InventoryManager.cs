@@ -443,6 +443,8 @@ public class HDK_InventoryManager : MonoBehaviour
 
     public void DeselectItem()
     {
+        InfoPanel.GetComponent<Animator>().SetBool("visible", false);
+     
         SlotSelection(true, null);
     }
 
@@ -486,6 +488,7 @@ public class HDK_InventoryManager : MonoBehaviour
         Player.GetComponentInChildren<SwayWeapon>().enabled = true;
         Player.GetComponent<HDK_Stamina>().Busy(false);
         Inventory.SetActive(false);
+        InfoPanel.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         inventoryOpen = false;
         Cursor.visible = false;
@@ -526,7 +529,6 @@ public class HDK_InventoryManager : MonoBehaviour
             if (selectedSlot.GetComponent<HDK_InventorySlot>().Empty)
             {
                 emptySlot = true;
-                // InfoPanel.GetComponent<Animator>().SetBool("visible", false);
                 InfoPanel.SetActive(false);
             }
             else //++++++MODIFICA++++++

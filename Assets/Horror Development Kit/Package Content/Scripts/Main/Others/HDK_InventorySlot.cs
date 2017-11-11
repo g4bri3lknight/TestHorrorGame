@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public enum ItemType
 {
@@ -51,16 +52,15 @@ public class HDK_InventorySlot : MonoBehaviour
     {
         if (textQuantity != null)
         {
-            if (itemType != ItemType.NONE || itemType != ItemType.DigitalCamera || itemType != ItemType.Flashlight || itemType != ItemType.Key || itemType != ItemType.Melee || itemType != ItemType.Melee)
-            {
-                setTextQuantity(AmmosQuantity);
-            }    
+            StartCoroutine(setTextQuantity(AmmosQuantity));
         }
     }
 
-    void setTextQuantity(int qta)
+    IEnumerator setTextQuantity(int qta)
     {
-        if (!Empty)
+        if (!Empty && (itemType != ItemType.NONE || itemType != ItemType.DigitalCamera ||
+            itemType != ItemType.Flashlight || itemType != ItemType.Key
+            || itemType != ItemType.Melee || itemType != ItemType.Melee))
         {
             if (itemType == ItemType.Firegun)
             {
@@ -86,11 +86,18 @@ public class HDK_InventorySlot : MonoBehaviour
                     textQuantity.color = Color.white;
                 }
             }
+
+            if (itemType == ItemType.Flashlight)
+            {
+                textQuantity.enabled = false; 
+            }
         }
         else
         {
             textQuantity.enabled = false;
         }
+
+        yield return  new WaitForSeconds(0.1f);
     }
 
     private void Start()
