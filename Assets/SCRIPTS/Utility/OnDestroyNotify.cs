@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class OnDestroyNotify : MonoBehaviour
 {
-    private ConsoleCommands consoleCommands;
-
-    void Start()
+    public void OnDestroy()
     {
-        consoleCommands = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ConsoleCommands>();
+        SaveLoadManager.AddObjectToDestroy(this.gameObject.name);
     }
 
-    void OnDestroy()
+    public void OnDestroy(GameObject obj)
     {
-        consoleCommands.AddObjectToDestroy(this.gameObject.name);
+        SaveLoadManager.AddObjectToDestroy(obj.name);
     }
 }

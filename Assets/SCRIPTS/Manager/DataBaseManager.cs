@@ -9,23 +9,18 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 
 
-public class DataBaseManager:MonoBehaviour
+public static class DataBaseManager
 {
-    private string conn;
+    private static string conn;
 
-    private IDbConnection dbconn;
+    private static IDbConnection dbconn;
    
     public static string DATABASE_PATH = "/DATA/horrorgame.db";
-
-    void Start()
-    {       
-        dbconn = null;
-    }
 
 
     #region DataBase Function
 
-    public void DBConnect()
+    public static void DBConnect()
     {
         conn = "URI=file:" + Application.dataPath + DATABASE_PATH;
 
@@ -36,14 +31,44 @@ public class DataBaseManager:MonoBehaviour
         Debug.Log("Connessione al DB effettuata.");
     }
 
-    public void DBDisconnect()
+    public static void DBDisconnect()
     {
         dbconn.Close();
         dbconn = null;
         Debug.Log("Disconnesso dal DB.");
     }
 
-    public void DeleteAllItems()
+
+    public static void DeleteScene()
+    {
+        string sqlQueryInventory = "DELETE FROM SCENE;";
+        try
+        {
+            DBConnect();
+            Debug.Log("DeleteScene start");
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            dbcmd.CommandText = sqlQueryInventory;
+
+            int deletedRow = dbcmd.ExecuteNonQuery();
+            Debug.Log("Record rimossi: " + string.Format("{0}", deletedRow));
+
+            Debug.Log("DeleteScene end");
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(string.Format("Errore nell'esecuzione della query {0}\n - Eccezzione: {1}", sqlQueryInventory, ex)); 
+            DBDisconnect();
+        }
+    }
+
+    public static void DeleteAllItems()
     {
         string sqlQueryInventory = "DELETE FROM INVENTORY;";
         try
@@ -73,7 +98,7 @@ public class DataBaseManager:MonoBehaviour
        
     }
 
-    public void DeleteAllPlayerInfo()
+    public static void DeleteAllPlayerInfo()
     {
         string sqlQueryPlayerInfo = "DELETE FROM PLAYER_INFO;";
         try
@@ -102,13 +127,13 @@ public class DataBaseManager:MonoBehaviour
         }
     }
 
-    public void DeleteAllSceneInfo()
+    public static void DeleteAllObjectsToDestroy()
     {
         string sqlQuerySceneInfo = "DELETE FROM OBJECTS_TO_DESTROY;";
         try
         {
             DBConnect();
-            Debug.Log("DeleteAllSceneInfo start");
+            Debug.Log("DeleteAllObjectsToDestroy start");
             IDbCommand dbcmd = dbconn.CreateCommand();
             dbcmd.CommandType = CommandType.Text;
 
@@ -116,7 +141,7 @@ public class DataBaseManager:MonoBehaviour
 
             int deletedRow = dbcmd.ExecuteNonQuery();
             Debug.Log("Record rimossi: " + string.Format("{0}", deletedRow));
-            Debug.Log("DeleteAllSceneInfo end");
+            Debug.Log("DeleteAllObjectsToDestroy end");
 
 
             dbcmd.Dispose();
@@ -131,8 +156,98 @@ public class DataBaseManager:MonoBehaviour
         }
     }
 
+
+
+    public static void SaveScene(SceneInfo sceneInfo)
+    {
+        try
+        {
+            DeleteScene();
+
+            DBConnect();
+
+            Debug.Log("SaveScene start");
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            string values = string.Format("'{0}','{1}'", sceneInfo.SceneIndex, sceneInfo.SceneName);
+
+
+            string sqlQuery = string.Format("INSERT INTO SCENE ('CURRENT_SCENE_INDEX','CURRENT_SCENE_NAME') VALUES ({0});", values);
+
+            dbcmd.CommandText = sqlQuery;
+
+            int insertedRow = dbcmd.ExecuteNonQuery();
+
+            if (insertedRow == 0)
+            {
+                Debug.Log("Errore nell'esecuzione della query!"); 
+            }
+            else
+            {
+                Debug.Log("Query eseguita!"); 
+            }
+
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("SaveScene end");
+            DBDisconnect(); 
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+    }
+
  
-    public  void  SaveAllItemsToDB(List<HDK_InventorySlot> itemAttributeList)
+    public static SceneInfo LoadScene()
+    {
+        SceneInfo sceneInfo = SceneInfo.CreateInstance<SceneInfo>();
+
+        try
+        {
+            DBConnect();
+
+            Debug.Log("LoadScene start");
+
+            IDataReader reader = null;
+
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            dbcmd.CommandType = CommandType.Text;
+
+            string sqlQuery = "SELECT * FROM SCENE";
+
+            dbcmd.CommandText = sqlQuery;
+
+            reader = dbcmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sceneInfo.SceneIndex = reader.GetInt32(0);
+                sceneInfo.SceneName = reader.GetString(1);
+            }
+
+            reader.Close();
+            reader = null;
+            dbcmd.Dispose();
+            dbcmd = null;
+
+            Debug.Log("LoadScene end");
+            DBDisconnect();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Errore nell'esecuzione della query!:\n" + ex); 
+            DBDisconnect();
+        }
+
+        return sceneInfo;
+    }
+
+    public static void  SaveAllItemsToDB(List<HDK_InventorySlot> itemAttributeList)
     {
         try
         {
@@ -204,7 +319,7 @@ public class DataBaseManager:MonoBehaviour
     }
 
 
-    public List<ItemAttribute> LoadAllItemsFromDB()
+    public static List<ItemAttribute> LoadAllItemsFromDB()
     {
         List<ItemAttribute> listAttribute = new List<ItemAttribute>();
       
@@ -270,7 +385,7 @@ public class DataBaseManager:MonoBehaviour
     }
 
 
-    public void SavePlayerInfo(PlayerInfoDB info)
+    public static void SavePlayerInfo(PlayerInfoDB info)
     {
         try
         {
@@ -325,7 +440,7 @@ public class DataBaseManager:MonoBehaviour
     }
 
 
-    public PlayerInfoDB LoadPlayerInfo()
+    public static PlayerInfoDB LoadPlayerInfo()
     {
 
         PlayerInfoDB info = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
@@ -384,15 +499,15 @@ public class DataBaseManager:MonoBehaviour
         return info;
     }
 
-    public void SaveScene(List<string> listOfObjectToDestroy)
+    public static void SaveObjectsToDestroy(List<string> listOfObjectToDestroy)
     {
         try
         {
-            DeleteAllSceneInfo();
+            DeleteAllObjectsToDestroy();
 
             DBConnect();
 
-            Debug.Log("SaveScene start");
+            Debug.Log("SaveObjectsToDestroy start");
 
             IDbCommand dbcmd = dbconn.CreateCommand();
             dbcmd.CommandType = CommandType.Text;
@@ -424,7 +539,7 @@ public class DataBaseManager:MonoBehaviour
             dbcmd.Dispose();
             dbcmd = null;
 
-            Debug.Log("SaveScene end");
+            Debug.Log("SaveObjectsToDestroy end");
             DBDisconnect(); 
         }
         catch (Exception ex)
@@ -434,7 +549,7 @@ public class DataBaseManager:MonoBehaviour
         }
     }
 
-    public List<string> LoadScene()
+    public static List<string> LoadObjectsToDestroy()
     {
         List<string> listOfObjectToDestroy = new List<string>();
 
@@ -442,7 +557,7 @@ public class DataBaseManager:MonoBehaviour
         {
             DBConnect();
 
-            Debug.Log("LoadScene start");
+            Debug.Log("LoadObjectsToDestroy start");
 
             IDataReader reader = null;
 
@@ -468,7 +583,7 @@ public class DataBaseManager:MonoBehaviour
             dbcmd.Dispose();
             dbcmd = null;
 
-            Debug.Log("LoadScene end");
+            Debug.Log("LoadObjectsToDestroy end");
             DBDisconnect();
         }
         catch (Exception ex)

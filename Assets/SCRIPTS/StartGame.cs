@@ -16,8 +16,26 @@ public class StartGame : MonoBehaviour
     [Tooltip("Oggetto Console presente nel Canvas")]
     public GameObject console;
 
-    private DataBaseManager dbManager;
+    private static StartGame instance;
 
+    public static StartGame Instance
+    {
+        get { return instance; }
+    }
+
+    private void Awake()
+    {
+        // If no GameManager ever existed, we are it.
+        if (instance == null)
+            instance = this;
+        // If one already exist, it's because it came from another level.
+        else if (instance != this)
+        {
+            Destroy(this.transform.gameObject);
+            return;
+        }
+    }
+   
     // Use this for initialization
     void Start()
     {
@@ -30,9 +48,8 @@ public class StartGame : MonoBehaviour
         Assert.IsNotNull(console);
         console.SetActive(false);
 
-        //TEST CONNECTION
-        //dbManager = GetComponent<DataBaseManager>();
-        // dbManager.DBConnect();
+        DontDestroyOnLoad(transform.gameObject);
+
     }
 	
     // Update is called once per frame

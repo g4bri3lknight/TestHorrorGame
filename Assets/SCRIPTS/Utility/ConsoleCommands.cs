@@ -5,8 +5,9 @@ using System;
 using UnityEditor;
 using UnityEngine.UI;
 using System.Linq;
-using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
+
 
 
 public class ConsoleCommands:MonoBehaviour
@@ -18,10 +19,6 @@ public class ConsoleCommands:MonoBehaviour
     public GameObject slotFiregun;
     public GameObject slotKey;
 
-    private HDK_PlayerHealth playerhealth;
-    private Transform playerTransform;
-
-    private HDK_Flashlight flashLight;
 
     [Header("Object References")]
     [Tooltip("Lista di oggetti padre in cu effettuare le ricerche. Se vuota verra' effettuata la ricerca solo al livello globale.")]
@@ -31,7 +28,6 @@ public class ConsoleCommands:MonoBehaviour
 
     private Command command;
 
-    private List<String> listOfObjectsToDestroy;
 
     public string[] CommandLine
     {
@@ -61,14 +57,9 @@ public class ConsoleCommands:MonoBehaviour
 
     private int maxQta = 30;
 
-    private DataBaseManager dbmanager;
-
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        dbmanager = GetComponent<DataBaseManager>();
-
-        listOfObjectsToDestroy = new List<string>();
     }
 
 
@@ -128,18 +119,22 @@ public class ConsoleCommands:MonoBehaviour
     {
         SaveInventory();
         SavePlayerInfo();
-        SaveScene();
+        SaveObjectsToDestroy();
+        SaveLoadManager.SaveScene();
     }
 
     public void Load()
     {
-        LoadPlayerInfo();
+        //SaveLoadManager.LoadScene();
+        LoadObjectsToDestroy();
         LoadInventory();
-        LoadScene();
+        LoadPlayerInfo();
+       
     }
 
 
-    public void SaveInventory()
+
+    public  void SaveInventory()
     {
         try
         {
@@ -160,7 +155,7 @@ public class ConsoleCommands:MonoBehaviour
                 listaOggettiInventario.Add(slotKey.GetComponent<HDK_InventorySlot>());
             }
 
-            dbmanager.SaveAllItemsToDB(listaOggettiInventario);
+            SaveLoadManager.SaveInventory(listaOggettiInventario);
         }
         catch (Exception ex)
         {
@@ -168,10 +163,9 @@ public class ConsoleCommands:MonoBehaviour
         }
     }
 
-
-    public void LoadInventory()
+    public  void LoadInventory()
     {
-        List<ItemAttribute> listaOggetti = dbmanager.LoadAllItemsFromDB();
+        List<ItemAttribute> listaOggetti = SaveLoadManager.LoadInventory();
 
         foreach (ItemAttribute itemAttr in listaOggetti)
         {
@@ -202,6 +196,65 @@ public class ConsoleCommands:MonoBehaviour
     }
 
 
+    public  void SavePlayerInfo()
+    {
+        HDK_PlayerHealth playerhealth = Player.GetComponent<HDK_PlayerHealth>();
+
+        Transform playerTransform = Player.transform;
+
+        HDK_Flashlight flashLight = Player.GetComponent<HDK_Flashlight>();
+
+        PlayerInfoDB playerInfo = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
+
+        playerInfo.PositionInScene = playerTransform.position;
+        playerInfo.RotationInScene = playerTransform.rotation;
+        playerInfo.TotalHealth = playerhealth.Health;
+        playerInfo.CurrentHealth = playerhealth.maxHealth;
+
+        playerInfo.HasFlashLight = flashLight.hasFlashlight;
+        playerInfo.FlashLightHealth = flashLight.health;
+        playerInfo.FlashLightTotalHealth = flashLight.MaxHealth;
+
+        playerInfo.CurrentScene = SceneManager.GetActiveScene().name;
+
+        SaveLoadManager.SavePlayerInfo(playerInfo);
+    }
+
+    public  void LoadPlayerInfo()
+    {
+        PlayerInfoDB info = SaveLoadManager.LoadPlayerInfo();
+        Player.GetComponent<HDK_PlayerHealth>().Health = info.CurrentHealth;
+        Player.GetComponent<HDK_PlayerHealth>().maxHealth = info.TotalHealth;
+
+        Player.transform.position = info.PositionInScene;
+
+        Player.transform.rotation = info.RotationInScene;
+
+        Player.GetComponent<HDK_Flashlight>().hasFlashlight = info.HasFlashLight;
+        Player.GetComponent<HDK_Flashlight>().health = info.FlashLightHealth;
+        Player.GetComponent<HDK_Flashlight>().MaxHealth = info.FlashLightTotalHealth;
+    }
+
+
+    public  void SaveObjectsToDestroy()
+    {
+        SaveLoadManager.SaveObjectsToDestroy();
+    }
+
+    public  void LoadObjectsToDestroy()
+    {
+        List<string> listOfObjectsToDestroy = SaveLoadManager.LoadObjectsToDestroy();
+
+        foreach (string itemName in listOfObjectsToDestroy)
+        {
+            GameObject obj = FindGameObject(itemName);
+
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+    }
 
     void loadSlot(GameObject slotObj, ItemAttribute itemAttr)
     {
@@ -290,7 +343,6 @@ public class ConsoleCommands:MonoBehaviour
     }
 
 
-
     public HDK_InventorySlot getAmmosForFireGun()
     {
         try
@@ -347,7 +399,6 @@ public class ConsoleCommands:MonoBehaviour
         }
     }
 
-
     public HDK_InventorySlot getSlotByItemName(string objectName)
     {
         List<HDK_InventorySlot> listaOggettiInventario = InventoryScrollContentGUI.GetComponentsInChildren<HDK_InventorySlot>().ToList();
@@ -363,74 +414,5 @@ public class ConsoleCommands:MonoBehaviour
 
         return null;
     }
-
-
-    public void SavePlayerInfo()
-    {
-        playerhealth = Player.GetComponent<HDK_PlayerHealth>();
-
-        playerTransform = Player.transform;
-
-        flashLight = Player.GetComponent<HDK_Flashlight>();
-
-        PlayerInfoDB playerInfo = PlayerInfoDB.CreateInstance<PlayerInfoDB>();
-
-        playerInfo.PositionInScene = playerTransform.position;
-        playerInfo.RotationInScene = playerTransform.rotation;
-        playerInfo.TotalHealth = playerhealth.Health;
-        playerInfo.CurrentHealth = playerhealth.maxHealth;
-
-        playerInfo.HasFlashLight = flashLight.hasFlashlight;
-        playerInfo.FlashLightHealth = flashLight.health;
-        playerInfo.FlashLightTotalHealth = flashLight.MaxHealth;
-
-        playerInfo.CurrentScene = SceneManager.GetActiveScene().name;
-
-        dbmanager.SavePlayerInfo(playerInfo);
-    }
-
-    public void LoadPlayerInfo()
-    {
-        PlayerInfoDB info = dbmanager.LoadPlayerInfo();
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(info.CurrentScene));
-
-        Player.GetComponent<HDK_PlayerHealth>().Health = info.CurrentHealth;
-        Player.GetComponent<HDK_PlayerHealth>().maxHealth = info.TotalHealth;
-
-        Player.transform.position = info.PositionInScene;
-
-        Player.transform.rotation = info.RotationInScene;
-
-        Player.GetComponent<HDK_Flashlight>().hasFlashlight = info.HasFlashLight;
-        Player.GetComponent<HDK_Flashlight>().health = info.FlashLightHealth;
-        Player.GetComponent<HDK_Flashlight>().MaxHealth = info.FlashLightTotalHealth;
-    }
-
-
-    public void SaveScene()
-    {
-        dbmanager.SaveScene(listOfObjectsToDestroy);
-    }
-
-    public void LoadScene()
-    {
-        listOfObjectsToDestroy = dbmanager.LoadScene();
-
-        foreach (string itemName in listOfObjectsToDestroy)
-        {
-            GameObject obj = FindGameObject(itemName);
-
-            if (obj != null)
-            {
-                Destroy(obj);
-            }
-        }
-    }
-
-
-    public void AddObjectToDestroy(String args)
-    {
-        listOfObjectsToDestroy.Add(args);
-    }
+        
 }
